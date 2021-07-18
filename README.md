@@ -5,6 +5,7 @@ Kullanıcı Arayüzü
 ![Profil](https://user-images.githubusercontent.com/81382160/126084074-3bef1b23-28d0-4ef8-a745-3945de766bdf.png)
 ![Anasayfa1](https://user-images.githubusercontent.com/81382160/126084082-110dbf12-7902-4429-9688-1339af98315a.png)
 ![Anasayfa2](https://user-images.githubusercontent.com/81382160/126084086-32458e07-f90d-4e0d-b9d4-ffa104a415de.png)
+![KitapDetay](https://user-images.githubusercontent.com/81382160/126084235-14f1e6f7-fbe6-412f-85a3-6dc7ce625538.png)
 ![Sepet](https://user-images.githubusercontent.com/81382160/126084090-a444642a-85d5-447d-ad98-96092db9f6be.png)
 ![Checkout1](https://user-images.githubusercontent.com/81382160/126084101-f49d96db-bccb-4ab6-a481-1613f6568b49.png)
 
