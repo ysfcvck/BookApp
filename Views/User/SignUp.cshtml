@@ -1,0 +1,39 @@
+﻿@model BookApp.Models.ViewModels.AppUserViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+
+<section id="form">
+    <!--form-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-1">
+                <div class="login-form">
+                    <!--login form-->
+                    <h2>Kayıt Formu</h2>
+                    @using (Html.BeginForm("SignUp", "User", FormMethod.Post))
+                    {
+                        <input type="text" name="UserName" placeholder="Kullanıcı Adı.." />
+                        <input type="text" name="NameSurname" placeholder="Ad Soyad.." />
+                        <input type="email" name="Email" placeholder="Eposta.." />
+                        <input type="tel" name="PhoneNumber" placeholder="Telefon Numarası.." />
+                        <textarea name="Adress" placeholder="Adres.."></textarea>
+                        <input type="password" name="Password" placeholder="Şifre.." />
+                        <div asp-validation-summary="All" style="color:red; margin-left:-35px;"></div>
+                        <button style=" float:left;" type="submit">Kaydol</button>
+                        <p style="margin-top:40px; margin-left:175px; font-size:15px;">VEYA</p>
+                        <a class="btn btn-primary" style="background-color: #73716d; float: right; margin-top:-40px; border-radius:0;" href="/User/Login">Giriş Yap</a>
+                        
+                     }
+                </div><!--/login form-->
+            </div>
+            <div class="col-sm-4">
+                <div class="signup-form">
+                    <img style="height:350px; margin-left:200px; margin-top:50px;" src="https://tbdbdpreanalitikevregunleri.files.wordpress.com/2018/03/register-online-icon.png" alt=""/>
+                </div><!--/sign up form-->
+            </div>
+        </div>
+    </div>
+</section><!--/form-->

@@ -1,0 +1,38 @@
+﻿@model List<BookApp.Models.ViewModels.OrderViewModel>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="module">
+    <div class="module-head">
+        <h3>Gönderilen Siparişler</h3>
+        <a style="float:right; margin-top:-25px;" href="/Order/UnShippedOrders">Bekleyen Siparişler</a>
+    </div>
+    <div class="module-body table">
+        <table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display" width="100%">
+            <thead>
+                <tr>
+                    <th> Sipariş No </th>
+                    <th> Kitap Adı </th>
+                    <th> Adet </th>
+                    <th> Tarih </th>
+                    <th> Fiyat </th>
+                    <th> Detaylar </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                 {
+                    <tr class="odd gradeX">
+                    <td>@item.OrderNo</td>
+                    <td>@item.Book.Name</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.OrderDate</td>
+                    <td>@item.Price ₺</td>
+                    <td>@Html.ActionLink("Detaylar", "OrderDetail", new { id = item.Id }, new { @class = "btn btn-primary" })</td>
+                    </tr>
+                 }
+            </tbody>
+        </table>
+    </div>
+</div><!--/.module-->

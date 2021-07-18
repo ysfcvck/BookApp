@@ -1,0 +1,50 @@
+﻿@model BookApp.Models.ViewModels.BillboardViewModel
+
+@{ 
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; 
+}
+
+
+<div class="module">
+    <div class="module-head">
+        <h3>Reklam Ekle</h3>
+        <a style="float:right; margin-top:-25px;" href="/Billboard/Index">Reklam Listesi</a>
+    </div>
+    <div class="module-body">
+        @using (Html.BeginForm(new { @class= "form-horizontal row-fluid" }))
+        {
+        
+            <div class="control-group">
+                <label class="form-control" id="label1" for="basicinput">Ana Başlık(1)</label>
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.MainTitle1, new { @class = "form-control", @id= "formtext" , @placeholder = "Ana başlık (1.bölüm).." })
+                </div>
+
+                <label class="form-control" id="label1" for="basicinput">Ana Başlık(2)</label>
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.MainTitle2, new { @class = "form-control", @id = "formtext", @placeholder = "Ana başlık (2.bölüm).." })
+                </div>
+
+                <label class="form-control" id="label1" for="basicinput">Alt Başlık</label>
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @id = "formtext", @placeholder = "Alt başlık.." })
+                </div>
+
+                <label class="form-control" id="label1" for="basicinput">Resim URL</label>
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.ImageURL, new { @class = "form-control", @id = "formtext", @placeholder = "Resim adresi.." })
+                </div>
+               
+                <label class="form-control" id="label1" for="basicinput">Açıklama</label>
+                <div class="controls">
+                    @Html.TextAreaFor(x => x.Description, new { @class = "form-control", @id = "formtext", @placeholder = "Açıklama.." })
+                </div>
+            </div>           
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

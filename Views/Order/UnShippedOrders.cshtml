@@ -1,0 +1,40 @@
+﻿@model List<BookApp.Models.ViewModels.OrderViewModel>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="module">
+    <div class="module-head">
+        <h3>Bekleyen Siparişler</h3>
+        <a style="float:right; margin-top:-25px;" href="/Order/ShippedOrders">Gönderilen Siparişler</a>
+    </div>
+    <div class="module-body table">
+        <table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display" width="100%">
+            <thead>
+                <tr>
+                    <th> Sipariş No </th>
+                    <th> Kitap Adı </th>
+                    <th> Adet </th>
+                    <th> Tarih </th>
+                    <th> Detaylar </th>
+                    <th> Göderildi </th>
+                    <th> İptal </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                 {
+                    <tr class="odd gradeX">
+                    <td>@item.OrderNo</td>
+                    <td>@item.Book.Name</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.OrderDate</td>
+                    <td>@Html.ActionLink("Detaylar", "OrderDetail", new { id = item.Id }, new { @class = "btn btn-info" })</td>
+                    <td>@Html.ActionLink("Gönderildi", "SendOrder", new { id = item.Id }, new { @class = "btn btn-primary", onclick = "return confirm('U Y A R I   |   Sipariş gönderildi olarak işaretlenmek üzere..');" })</td>
+                    <td>@Html.ActionLink("İptal", "OrderRemove", new { id = item.Id }, new { @class = "btn btn-danger", onclick = "return confirm('U Y A R I   |   Şipariş iptal edilmek üzere..');" })</td>
+                    </tr>
+                 }
+            </tbody>
+        </table>
+    </div>
+</div><!--/.module-->

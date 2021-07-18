@@ -1,0 +1,74 @@
+﻿@model IEnumerable<BookApp.Models.ViewModels.CartViewModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="cart_items">
+    <div class="container">
+        <div class="table-responsive cart_info">
+            <!-- Eğer sepete ürün yoksa -->
+            @if (ViewBag.CartCount <= 0)
+            {
+                <div style="text-align:center;">
+                    <p style="font-size:25px; margin-top:25px;">Sepetinizde ürün bulunmamaktadır.</p>
+                    <a href="/Default/Index">Alışverişe Devam Edin</a>
+                </div>
+            }
+            <!-- Eğer sepette ürün varsa -->
+            @if (ViewBag.CartCount > 0)
+            {
+             <table class="table table-condensed">
+                <thead>
+                    <tr class="cart_menu" style="text-align:center;">
+                        <td style="text-align:left;" class="image">Ürün</td>
+                        <td class="description"></td>
+                        <td class="price">Birim Fiyat</td>
+                        <td class="quantity">Adet</td>
+                        <td class="total">Tutar</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        if (item.UserId == Int32.Parse(ViewBag.userId))
+                        {
+                            <tr style="text-align:center;">
+                                <td class="cart_product" style="text-align:left;">
+                                    <a href="/Default/BookDetails/@item.BookId"><img style="width:100px;" src="@item.ImageURL" alt=""></a>
+                                </td>
+                                <td class="cart_description" style="text-align:left;">
+                                    <h4><a href="/Default/BookDetails/@item.BookId">@item.BookName</a></h4>
+                                    <p>Ürün ID : @item.BookId</p>
+                                </td>
+                                <td class="cart_price">
+                                    <p>@item.Price ₺</p>
+                                </td>
+                                <td class="cart_price">
+                                    <p>
+                                        <a style="color:#696763;" href="/Cart/CartGet/@item.Id">@item.Quantity</a><br />
+                                        <a style="color: #696763; font-size: 10px;" href="/Cart/CartGet/@item.Id">Değiştir</a>
+                                    </p>
+                                </td>
+                                <td class="cart_total">
+                                    <p class="cart_total_price">@item.TotalPrice ₺</p>
+                                </td>
+                                <td class="cart_delete">
+                                    @Html.ActionLink("Kaldır", "CartRemove", new { id = item.Id }, new { @class = "btn btn-warning", onclick = "return confirm('U Y A R I   |   Ürün sepetten çıkarılmak üzere..');" })
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+             <div style="text-align:right;">
+                <p class="cart_total_price" style="margin-right:10px;"><b>Toplam Fiyat</b></p>
+                <p class="cart_total_price" style="margin-right:10px;">@ViewBag.totalPrice ₺</p>
+                <p ><a style="text-align:right;" class="btn btn-primary" href="/Cart/Checkout">Alışverişi Tamamla</a></p>
+                <p style="text-align:left; margin-top:68px;"><a class="btn btn-primary" onclick="history.back();">Alışverişe Devam Et</a></p>
+                 
+             </div>
+            }
+        </div>
+    </div>
+</section> <!--/#cart_items-->

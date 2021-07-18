@@ -1,0 +1,199 @@
+﻿@model IEnumerable<BookApp.Models.ViewModels.BookViewModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- ANASAYFA -->
+
+<section id="slider">
+    <!--slider-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="item active">
+
+                            <!-- Sayfa açıldığında aktif bir reklam olması için sabit reklam -->
+                            <div class="col-sm-6">
+                                <h1><span>BOOK</span>APP</h1>
+                                <h2>Hizmetinizde..</h2>
+                                <p>Güncel kitapların ve güvenli alışverişin adresi.. Yepyeni kitaplarla hayatı doyasıya yaşa. </p>
+                            </div>
+                            <div class="col-sm-6">
+                                <img style="height:350px; width:475px;" src="https://i.hizliresim.com/s5zljpp.png" class="girl img-responsive" alt="" />
+                            </div>
+                            <!-- / -->
+                        </div>
+                        
+                        @await Component.InvokeAsync("Billboard") <!-- Componentlerden reklamları listeliyoruz -->
+
+                    </div>
+                    <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!--/slider-->
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="left-sidebar">
+                    <h2>Kategoriler</h2>
+                    <div class="panel-group category-products" id="accordian">
+                        <!--category-productsr-->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><a href="/Default/Books">Tüm Kitaplar</a></h4>
+                            </div>
+                            @await Component.InvokeAsync("CategoryGetList") <!-- Componentlerden kategorileri listeliyoruz -->
+
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
+                                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                        Alt Kategoriler
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="sportswear" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul>
+                                        @await Component.InvokeAsync("GenreGetList") <!-- Componentlerden türleri listeliyoruz -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--/category-products-->
+                    <div class="shipping text-center">
+                        <!--sol sabit reklamlar-->
+                        <p><img style="width:270px;" src="https://c0.wallpaperflare.com/preview/698/843/707/ireland-dublin-trinity-college-culture.jpg" alt="" /></p>
+                        <p><img style="width:270px;" src="https://i.pinimg.com/564x/be/93/a2/be93a21ea57e8879d59c4ec44a423e6a.jpg" alt="" /></p>
+                        <p><img style="width:270px;" src="https://www.backgroundscool.com/wp-content/uploads/2019/03/book_coffee_bed_shadow_117507_938x1668.jpg" alt="" /></p>
+                    </div><!--/sol sabit reklamlar-->
+                </div>
+            </div>
+
+            <div class="col-sm-9 padding-right">
+                <div class="features_items">
+                    <!--features_items-->
+                    <h2 class="title text-center">Son Eklenen</h2>
+
+                    <!-- Foreach ile veritabanındaki kitapları sondan listeleyerek ilk 12 elemanı alıyoruz -->
+                    @foreach (var item in Model.Reverse().Take(12)) 
+                    {
+                        <div class="col-sm-4">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        <a href="/Default/BookDetails/@item.BookId"><img class="indeximg" src="@item.ImageURL" alt="" /></a>
+                                        <h2>@item.Price ₺</h2>
+                                        <p>@item.Name</p>
+
+                                        <!-- Ürün stok sayısı 0'dan büyükse sepete ekle butonu aktif olacak -->
+                                        @if (item.Stock > 0)
+                                        {
+                                            <a href="/Cart/CartAddd/@item.BookId" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Sepete Ekle</a>
+                                        }
+
+                                        <!-- Ürün stok sayısı 0 veya 0'dan küçükse sepete ekle butonu devre dışı kalacak-->
+                                        @if (item.Stock <= 0)
+                                        {
+                                            <a class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Stokta yok</a>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div><!--features_items-->
+
+                <div class="recommended_items">
+                    <!--recommended_items-->
+                    <h2 class="title text-center">Önerilen Kitaplar</h2>
+                    <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item active">
+
+                                @foreach (var item in Model.Reverse().Take(3))
+                                {
+                                    <div class="col-sm-4">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <a href="/Default/BookDetails/@item.BookId"><img class="indexrndm" src="@item.ImageURL" alt="" /></a>
+                                                    <h2>@item.Price ₺</h2>
+                                                    <p>@item.Name</p>
+
+                                                    <!-- Ürün stok sayısı 0'dan büyükse sepete ekle butonu aktif olacak -->
+                                                    @if (item.Stock > 0)
+                                                    {
+                                                        <a href="/Cart/CartAddd/@item.BookId" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Sepete Ekle</a>
+                                                    }
+
+                                                    <!-- Ürün stok sayısı 0 veya 0'dan küçükse sepete ekle butonu devre dışı kalacak-->
+                                                    @if (item.Stock <= 0)
+                                                    {
+                                                        <a class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Stokta yok</a>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="item">
+                                @foreach (var item in Model.Take(3))
+                                {
+                                    <div class="col-sm-4">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <a href="/Default/BookDetails/@item.BookId"><img class="indexrndm" src="@item.ImageURL" alt="" /></a>
+                                                    <h2>@item.Price ₺</h2>
+                                                    <p>@item.Name</p>
+
+                                                    <!-- Ürün stok sayısı 0'dan büyükse sepete ekle butonu aktif olacak -->
+                                                    @if (item.Stock > 0)
+                                                    {
+                                                        <a href="/Cart/CartAddd/@item.BookId" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Sepete Ekle</a>
+                                                    }
+
+                                                    <!-- Ürün stok sayısı 0 veya 0'dan küçükse sepete ekle butonu devre dışı kalacak-->
+                                                    @if (item.Stock <= 0)
+                                                    {
+                                                        <a class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Stokta yok</a>
+                                                    }
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+                </div><!--/recommended_items-->
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,52 @@
+﻿@model BookApp.Models.ViewModels.AppUserViewModel
+@{
+    Layout = Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- KULLANICI BİLGİ GÜNCELLEME -->
+
+<section id="cart_items">
+    <div class="container">
+        <div class="col-md-6" id="myaccount">
+            <p style="font-size:25px; color:#fe980f;">Hesap Bilgileri</p>
+            @using (Html.BeginForm())
+            {
+                @Html.HiddenFor(x => x.Id, new { @readonly = true, @class = "form-control" })
+
+                <p>
+                    <b><i>Ad Soyad:</i> </b>
+                    @Html.ValidationMessageFor(model => model.NameSurname, "", new { @style = "color:red" })
+                    @Html.TextBoxFor(x => x.NameSurname, new { @class = "form-control" })
+                </p>
+                <p>
+                    <b><i>Kullanıcı Adı:</i> </b>
+                    @Html.ValidationMessageFor(model => model.UserName, "", new { @style = "color:red" })
+                    @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+                </p>
+                <p>
+                    <b><i>E-Posta:</i> </b>
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @style = "color:red" })
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                </p>
+                <p>
+                    <b><i>Telefon Numarası:</i> </b>
+                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @style = "color:red" })
+                    @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control" })
+                </p>
+                <p>
+                    <b><i>Adres:</i> </b>
+                    @Html.ValidationMessageFor(model => model.Adress, "", new { @style = "color:red" })
+                    @Html.TextBoxFor(x => x.Adress, new { @class = "form-control" })
+                </p>
+                
+                <button class="btn btn-primary">Güncelle</button>
+                
+            }
+        </div>
+        <div class="col-md-5" id="myorder">
+            <img style="width:350px; margin-left:100px; margin-top:60px;" src="~/BookShop/images/myProfile.png" alt="Alternate Text" />
+            <a style="margin-left:100px;" class="btn btn-primary" href="/Account/MyShippedOrders">Tamamlanan siparişlerim</a>
+            <a class="btn btn-primary" href="/Account/MyUnShippedOrders">Bekleyen siparişlerim</a>
+        </div>
+    </div>
+</section>

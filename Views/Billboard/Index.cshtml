@@ -1,0 +1,38 @@
+﻿@model List<BookApp.Models.ViewModels.BillboardViewModel>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="module">
+    <div class="module-head">
+        <h3>Reklam Yönetimi</h3>
+        <a style="float:right; margin-top:-25px;" href="/Billboard/BillboardAdd">Reklam Ekle</a>
+    </div>
+    <div class="module-body table">
+        <table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display" width="100%">
+            <thead>
+                <tr>
+                    <th> Ana Başlık (1) </th>
+                    <th> Ana Başlık (2) </th>
+                    <th> Alt Başlık </th>
+                    <th> Açıklama </th>
+                    <th> Detaylar </th>
+                    <th> Sil </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                 {
+                    <tr class="odd gradeX">
+                    <td>@item.MainTitle1</td>
+                    <td>@item.MainTitle2</td>
+                    <td>@item.Title</td>
+                    <td>@item.Description</td>
+                    <td>@Html.ActionLink("Düzenle", "BillboardGet", new { id = item.Id }, new { @class = "btn btn-primary" })</td>
+                    <td>@Html.ActionLink("Sil", "BillboardRemove", new { id = item.Id }, new { @class = "btn btn-danger", onclick = "return confirm('U Y A R I   |   Reklam silinmek üzere..');" })</td>
+                    </tr>
+                 }
+            </tbody>
+        </table>
+    </div>
+</div><!--/.module-->

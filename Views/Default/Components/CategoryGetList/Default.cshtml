@@ -1,0 +1,12 @@
+﻿@model IEnumerable<BookApp.Models.ViewModels.CategoryViewModel>
+<!-- category list -->
+
+@foreach (var item in Model)
+{
+    if (item.Status == true)
+    {
+        <div class="panel-heading">
+            <h4 class="panel-title"><a href="/Default/BookCategory/@item.CategoryId">@item.CategoryName</a></h4>
+        </div>
+    }
+}

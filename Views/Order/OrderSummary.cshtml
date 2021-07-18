@@ -1,0 +1,47 @@
+﻿@model IEnumerable<BookApp.Models.ViewModels.OrderViewModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="text-align:center; color:#fe980f;">
+    <p style="font-size:25px;"> Sipariş Numarası</p>
+    <p style="font-size:20px;"> @TempData["orderNo"]</p>
+</div>
+<br />
+<section id="cart_items">
+    <div class="container">
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed">
+                <thead>
+                    <tr class="cart_menu" style="text-align:center;">
+                        <td style="text-align:left;" class="image">Ürün</td>
+                        <td class="quantity">Adet</td>
+                        <td class="total">Tutar</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr style="text-align:center;">
+                            <td class="cart_description" style="text-align:left;">
+                                <h4><a href="#">@item.Book.Name</a></h4>
+                                <p>Ürün ID : @item.BookId</p>
+                            </td>
+                            <td class="cart_price">
+                                <p>
+                                    <a style="color:#696763;">@item.Quantity</a><br />
+                                </p>
+                            </td>
+                            <td class="cart_total">
+                                <p class="cart_total_price">@item.Price ₺</p>
+                            </td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section> <!--/#cart_items-->

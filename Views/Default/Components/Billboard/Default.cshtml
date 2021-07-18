@@ -1,0 +1,15 @@
+﻿@model IEnumerable<BookApp.Models.ViewModels.BillboardViewModel>
+
+@foreach (var item in Model)
+{
+    <div class="item">
+        <div class="col-sm-6">
+            <h1><span>@item.MainTitle1</span>@item.MainTitle2</h1>
+            <h2>@item.Title</h2>
+            <p>@item.Description </p>
+        </div>
+        <div class="col-sm-6">
+            <img style="height:350px; width:475px;" src="@item.ImageURL" class="girl img-responsive" alt="" />
+        </div>
+    </div>
+}

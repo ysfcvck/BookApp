@@ -1,0 +1,45 @@
+﻿@model List<BookApp.Models.ViewModels.BookViewModel>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="module">
+    <div class="module-head">
+        <h3>Kitap İşlemleri</h3>
+        <a style="float:right; margin-top:-25px;" href="/Book/BookAdd">Kitap Ekle</a>
+    </div>
+    <div class="module-body table">
+        <table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display" width="100%">
+            <thead>
+                <tr>
+                    @*<th> Id </th>*@
+                    <th> Adı </th>
+                    <th> Kategori </th>
+                    <th> Türü </th>
+                    <th> Yazar </th>
+                    <th> Fiyat </th>
+                    <th> Stok </th>
+                    <th> Detaylar </th>
+                    <th> Sil </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                 {
+                    <tr class="odd gradeX">
+                    @*<td>@item.Id</td>*@
+                    <td>@item.Name</td>
+                    <td>@item.Category.CategoryName</td>
+                    <td>@item.Genre.GenreName</td>
+                    <td>@item.Writer</td>
+                    <td>@item.Price ₺</td>
+                    <td>@item.Stock</td>
+                    <td>@Html.ActionLink("Detaylar", "BookGet", new { id = item.BookId }, new { @class = "btn btn-primary" })</td>
+                    <td>@Html.ActionLink("Sil", "BookRemove", new { id = item.BookId }, new { @class = "btn btn-danger", onclick = "return confirm('U Y A R I   |   Kayıt silinmek üzere..');" })</td>
+                    </tr>
+                 }
+            </tbody>
+        </table>
+    </div>
+</div><!--/.module-->

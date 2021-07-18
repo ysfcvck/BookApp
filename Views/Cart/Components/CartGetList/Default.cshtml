@@ -1,0 +1,49 @@
+﻿
+@model IEnumerable<BookApp.Models.ViewModels.CartViewModel>
+
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed">
+                <thead>
+                    <tr class="cart_menu" style="text-align:center;">
+                        <td style="text-align:left;" class="image">Ürün</td>
+                        <td class="description"></td>
+                        <td class="price">Birim Fiyat</td>
+                        <td class="quantity">Adet</td>
+                        <td class="total">Tutar</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr style="text-align:center;">
+                            <td class="cart_product" style="text-align:left;">
+                                <a href="/Default/BookDetails/@item.BookId"><img style="width:100px;" src="@item.ImageURL" alt=""></a>
+                            </td>
+                            <td class="cart_description" style="text-align:left;">
+                                <h4><a href="/Default/BookDetails/@item.BookId">@item.BookName</a></h4>
+                                <p>Ürün ID : @item.BookId</p>
+                            </td>
+                            <td class="cart_price">
+                                <p>@item.Price ₺</p>
+                            </td>
+                            <td class="cart_price">
+                                <p>
+                                    <a style="color:#696763;">@item.Quantity</a><br />
+                                </p>
+
+                            </td>
+                            <td class="cart_total">
+                                <p class="cart_total_price">@item.TotalPrice ₺</p>
+                            </td>
+                            
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+            <div style="text-align:right;">
+                <p class="cart_total_price" style="margin-right:10px;"><b>Toplam Fiyat</b></p>
+                <p class="cart_total_price" style="margin-right:43px;">@ViewBag.totalPrice ₺</p>
+            </div>
+        </div>

@@ -1,0 +1,86 @@
+﻿@model BookApp.Models.ViewModels.BookViewModel
+
+@{ 
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; 
+}
+
+
+<div class="module">
+    <div class="module-head">
+        <h3>Kitap Ekle</h3>
+        <a style="float:right; margin-top:-25px;" href="/Book/Index">Kitap Listesi</a>
+    </div>
+    <div class="module-body">
+        @using (Html.BeginForm(new { @class= "form-horizontal row-fluid" }))
+        {
+                <div class="control-group">
+                <label class="form-control" id="label1" for="basicinput">Kitap Adı</label>
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @id= "formtext" , @placeholder = "Kitap Adı.." })
+                </div>
+
+                <label class="form-control" id="label1" for="basicinput">Yazar</label>
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.Writer, new { @class = "form-control", @id = "formtext", @placeholder = "Yazar.." })
+                </div>
+
+                <label class="control-label" id="label1" for="basicinput">Kategori</label>
+                <div class="controls">
+                    @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.ctgry, "--Lütfen Kategori Seçin--", new { @class = "form-control" , @id = "formtext" })
+                </div>
+
+               
+                <label class="control-label" id="label1" for="basicinput">Tür</label>
+                <div class="controls">
+                    @Html.DropDownListFor(x => x.GenreId, (List<SelectListItem>)ViewBag.gnrs, "--Lütfen Tür Seçin--", new { @class = "form-control", @id = "formtext"})
+                </div>
+                
+
+                <label class="form-control" id="label1" for="basicinput">Yayınevi</label>
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.Publisher, new { @class = "form-control", @id = "formtext", @placeholder = "Yayınevi.." })
+                </div>
+
+                <label class="form-control" id="label1" for="basicinput">Yayın Yılı</label>
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.PublishYear, new { @class = "form-control", @id = "formtext", @placeholder = "Yayın yılı.." })
+                </div>
+
+                <label class="form-control" id="label1" for="basicinput">Sayfa Sayısı</label>
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.TotalPages, new { @class = "form-control", @id = "formtext", @placeholder = "Sayfa sayısı.." })
+                </div>
+
+                <label class="form-control" id="label1" for="basicinput">Dil</label>
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.Language, new { @class = "form-control", @id = "formtext", @placeholder = "Dil.." })
+                </div>
+
+                <label class="form-control" id="label1" for="basicinput">Fiyat(TL)</label>
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.Price, new { @class = "form-control", @id = "formtext", @placeholder = "Fiyat.." })
+                </div>
+
+                <label class="form-control" id="label1" for="basicinput">Stok</label>
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.Stock, new { @class = "form-control", @id = "formtext", @placeholder = "Stok.." })
+                </div>
+
+                <label class="form-control" id="label1" for="basicinput">Kapak Fotoğrafı(URL)</label>
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.ImageURL, new { @class = "form-control", @id = "formtext", @placeholder = "Kapak fotoğrafı.." })
+                </div>
+
+                <label class="form-control" id="label1" for="basicinput">Açıklama</label>
+                <div class="controls">
+                    @Html.TextAreaFor(x => x.Description, new { @class = "form-control", @id = "formtext", @placeholder = "Açıklama.." })
+                </div>
+            </div>           
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

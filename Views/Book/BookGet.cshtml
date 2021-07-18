@@ -1,0 +1,89 @@
+﻿@model BookApp.Models.ViewModels.BookViewModel
+@{
+    Layout = Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Kitap Detay</title>
+</head>
+<body>
+    <div class="container">
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" style="text-align:center;">Detay / Düzenle</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        @using (Html.BeginForm("BookUpdate", "Book", FormMethod.Post))
+                        {
+                            @Html.HiddenFor(x => x.BookId, new { @readonly = true, @class = "form-control" })
+
+                            <b>Kitap Adı:</b><br />
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @style = "color:red" })
+                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @style = "width:500px" })
+
+                            <b>Yazar:</b><br />
+                            @Html.ValidationMessageFor(model => model.Writer, "", new { @style = "color:red" })
+                            @Html.TextBoxFor(x => x.Writer, new { @class = "form-control", @style = "width:500px" })
+
+                            <b>Yayınevi:</b><br />
+                            @Html.ValidationMessageFor(model => model.Publisher, "", new { @style = "color:red" })
+                            @Html.TextBoxFor(x => x.Publisher, new { @class = "form-control", @style = "width:500px" })
+
+                            <b>Baskı Yılı:</b><br />
+                            @Html.ValidationMessageFor(model => model.PublishYear, "", new { @style = "color:red" })
+                            @Html.TextBoxFor(x => x.PublishYear, new { @class = "form-control", @style = "width:500px" })
+
+                            <b>Sayfa Sayısı:</b><br />
+                            @Html.ValidationMessageFor(model => model.TotalPages, "", new { @style = "color:red" })
+                            @Html.TextBoxFor(x => x.TotalPages, new { @class = "form-control", @style = "width:500px" })
+
+                            <b>Dil:</b><br />
+                            @Html.ValidationMessageFor(model => model.Language, "", new { @style = "color:red" })
+                            @Html.TextBoxFor(x => x.Language, new { @class = "form-control", @style = "width:500px" })
+
+                            <b>Fiyat(TL):</b><br />
+                            @Html.ValidationMessageFor(model => model.Price, "", new { @style = "color:red" })
+                            @Html.TextBoxFor(x => x.Price, new { @class = "form-control", @style = "width:500px" })
+
+                            <b>Stok:</b><br />
+                            @Html.ValidationMessageFor(model => model.Stock, "", new { @style = "color:red" })
+                            @Html.TextBoxFor(x => x.Stock, new { @class = "form-control", @style = "width:500px" })
+
+                            <b>Kategori:</b><br />
+                            @Html.ValidationMessageFor(model => model.CategoryId, "", new { @style = "color:red" })
+                            @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.ctgry, "--Lütfen Kategori Seçin--", new { @class = "form-control", @style = "width:514px" })
+
+                            <b>Kategori:</b><br />
+                            @Html.ValidationMessageFor(model => model.CategoryId, "", new { @style = "color:red" })
+                            @Html.DropDownListFor(x => x.GenreId, (List<SelectListItem>)ViewBag.gnrs, "--Lütfen Tür Seçin--", new { @class = "form-control", @style = "width:514px" })
+
+                            <b>Kapak Fotoğrafı(URL):</b><br />
+                            @Html.ValidationMessageFor(model => model.ImageURL, "", new { @style = "color:red" })
+                            @Html.TextBoxFor(x => x.ImageURL, new { @class = "form-control", @style = "width:500px" })
+
+                             <b>Açıklama:</b><br />
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @style = "color:red" })
+                            @Html.TextAreaFor(x => x.Description, new { @class = "form-control", @style = "width:500px" })
+
+                            <div class="modal-footer">
+                                <button class="btn btn-primary">Güncelle</button>
+                                <a onclick="history.back();" class="btn btn-danger">İptal</a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $(function () {
+        $('#myModal').modal({ backdrop: 'static', keyboard: false, show: true });
+    });
+</script>
+

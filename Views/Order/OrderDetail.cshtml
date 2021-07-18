@@ -1,0 +1,80 @@
+﻿@model BookApp.Models.ViewModels.OrderViewModel
+@{
+    Layout = Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Sipariş Detayı</title>
+</head>
+<body>
+    <div class="container">
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" style="text-align:center;">Sipariş Detayı</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        @using (Html.BeginForm())
+                        {
+                            <b>Sipariş Numarası:</b><br />
+                            @Html.TextBoxFor(x => x.OrderNo, new { @readonly=true , @class = "form-control", @style = "width:500px" })<br />
+
+                            <b>Kitap Adı:</b><br />
+                            @Html.TextBoxFor(x => x.BookId, new { @readonly = true, @class = "form-control", @style = "width:500px" })<br />
+
+                            <b>Sipariş Tarihi:</b><br />
+                            @Html.TextBoxFor(x => x.OrderDate, new { @readonly = true, @class = "form-control", @style = "width:500px" })<br />
+
+                            <b>Adet:</b><br />
+                            @Html.TextBoxFor(x => x.Quantity, new { @readonly = true, @class = "form-control", @style = "width:500px" })<br />
+
+                            <b>Tutar:</b><br />
+                            @Html.TextBoxFor(x => x.Price, new { @readonly = true, @class = "form-control", @style = "width:500px" })<br />
+
+                            <b>Kayıtlı Kullanıcı(Id):</b><br />
+                            @Html.TextBoxFor(x => x.UserId, new { @readonly = true, @class = "form-control", @style = "width:500px" })<br />
+
+                            <b>Ad Soyad:</b><br />
+                            @Html.TextBoxFor(x => x.Name, new { @readonly = true, @class = "form-control", @style = "width:500px" })<br />
+
+                            <b>Telefon:</b><br />
+                            @Html.TextBoxFor(x => x.Phone, new { @readonly = true, @class = "form-control", @style = "width:500px" })<br />
+
+                            <b>Eposta:</b><br />
+                            @Html.TextBoxFor(x => x.Email, new { @readonly = true, @class = "form-control", @style = "width:500px" })<br />
+
+                            <b>Şehir:</b><br />
+                            @Html.TextBoxFor(x => x.City, new { @readonly = true, @class = "form-control", @style = "width:500px" })<br />
+
+                            <b>Adres:</b><br />
+                            @Html.TextAreaFor(x => x.Adress, new { @readonly = true, @class = "form-control", @style = "width:500px" })<br />
+
+                            <b>Not:</b><br />
+                            @Html.TextAreaFor(x => x.Note, new { @readonly = true, @class = "form-control", @style = "width:500px" })<br />
+
+                            <div class="modal-footer">
+
+                                @if (Model.State==false)
+                                {
+                                   @Html.ActionLink("Gönderildi", "SendOrder", new { id = Model.Id }, new { @class = "btn btn-primary", onclick = "return confirm('U Y A R I   |   Sipariş gönderildi olarak işaretlenmek üzere..');" })
+                                }
+
+                                <a onclick="history.back();" class="btn btn-danger">Kapat</a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $(function () {
+        $('#myModal').modal({ backdrop: 'static', keyboard: false, show: true });
+    });
+</script>
+

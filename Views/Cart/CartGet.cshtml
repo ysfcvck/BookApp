@@ -1,0 +1,52 @@
+﻿@model BookApp.Models.ViewModels.CartViewModel
+@{
+    Layout = Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Sipariş Düzenle</title>
+</head>
+<body>
+    <div class="container">
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" style="text-align:center;">Sipariş Düzenle</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        @using (Html.BeginForm("CartUpdate", "Cart", FormMethod.Post))
+                        {
+                            @Html.HiddenFor(x => x.Id, new { @readonly = true, @class = "form-control" })
+                            @Html.HiddenFor(x => x.UserId, new { @readonly = true, @class = "form-control" })
+                            @Html.HiddenFor(x => x.BookId, new { @readonly = true, @class = "form-control" })
+                            @Html.HiddenFor(x => x.Price, new { @readonly = true, @class = "form-control" })
+                            @Html.HiddenFor(x => x.TotalPrice, new { @readonly = true, @class = "form-control" })
+                            @Html.HiddenFor(x => x.ImageURL, new { @readonly = true, @class = "form-control" })
+
+                            <b>Kitap Adı:</b><br />
+                            @Html.TextBoxFor(x => x.BookName, new { @readonly = true, @class = "form-control"})
+
+                            <b>Adet:</b><br />
+                            @Html.TextBoxFor(x => x.Quantity, new { @class = "form-control"})
+
+                            <div class="modal-footer">
+                                <button style="margin-top:0;" class="btn btn-primary">Güncelle</button>
+                                <a onclick="history.back();" class="btn btn-danger">İptal</a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $(function () {
+        $('#myModal').modal({ backdrop: 'static', keyboard: false, show: true });
+    });
+</script>
+

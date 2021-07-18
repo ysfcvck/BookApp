@@ -1,0 +1,170 @@
+﻿@model IEnumerable<BookApp.Models.ViewModels.BookViewModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- KİTAP DETAYI -->
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="left-sidebar">
+                    <h2>Kategoriler</h2>
+                    <div class="panel-group category-products" id="accordian">
+                        <!--category-productsr-->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><a href="/Default/Books">Tüm Kitaplar</a></h4>
+                            </div>
+                            @await Component.InvokeAsync("CategoryGetList")
+
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
+                                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                        Alt Kategoriler
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="sportswear" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul>
+                                        @await Component.InvokeAsync("GenreGetList")
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--/category-products-->
+                </div>
+            </div>
+
+            <div class="col-sm-9 padding-right">
+                <div class="product-details">
+                    <!--product-details-->
+                    @foreach (var item in Model)
+                    {
+                        if (item.BookId == ViewBag.x)
+                        {
+                            <div class="col-sm-5">
+                                <div class="view-product">
+                                    <img style="height:500px;" src="@item.ImageURL" alt="" />
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="product-information">
+                                    <!--/product-information-->
+                                    <h2>@item.Name</h2>
+                                    <p><a href="/Default/BookCategory/@item.CategoryId">@item.Category.CategoryName</a> | <a href="/Default/BookGenre/@item.GenreId">@item.Genre.GenreName</a></p>
+                                    <p>ID : @item.BookId</p>
+                                    <span>
+                                        <span>@item.Price ₺</span>
+
+                                        <!-- Ürün stok sayısı 0'dan büyükse sepete ekle butonu aktif olacak -->
+                                        @if (item.Stock > 0)
+                                        {
+                                            <a href="/Cart/CartAdd/@item.BookId" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Sepete Ekle</a>
+                                        }
+
+                                        <!-- Ürün stok sayısı 0 veya 0'dan küçükse sepete ekle butonu devre dışı kalacak-->
+                                        @if (item.Stock <= 0)
+                                        {
+                                            <a class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Stokta yok</a>
+                                        }
+
+                                    </span><br /><br />
+                                    <p><b>Yazar:</b> @item.Writer</p>
+                                    <p><b>Yayınevi:</b> @item.Publisher</p>
+                                    <p><b>Dil:</b> @item.Language</p>
+                                    <p><b>Baskı Yılı:</b> @item.PublishYear</p>
+                                    <p><b>Sayfa Sayısı:</b> @item.TotalPages</p><br />
+                                    <p><b>Açıklama:</b> @item.Description</p><br />
+                                    <p>Toplu alımlar için lütfen bizimle iletişime geçin..</p>
+                                </div><!--/product-information-->
+                            </div>
+                        }
+                    }
+                </div><!--/product-details-->
+
+                <div style="margin-top:200px;" class="recommended_items">
+                    <!--recommended_items-->
+                    <h2 class="title text-center">Önerilen Kitaplar</h2>
+
+                    <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item active">
+
+                                @foreach (var item in Model.Reverse().Take(3))
+                                {
+                                    <div class="col-sm-4">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <a href="/Default/BookDetails/@item.BookId"><img class="indexrndm" src="@item.ImageURL" alt="" /></a>
+                                                    <h2>@item.Price ₺</h2>
+                                                    <p>@item.Name</p>
+
+                                                    <!-- Ürün stok sayısı 0'dan büyükse sepete ekle butonu aktif olacak -->
+                                                    @if (item.Stock > 0)
+                                                    {
+                                                        <a href="/Cart/CartAddd/@item.BookId" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Sepete Ekle</a>
+                                                    }
+
+                                                    <!-- Ürün stok sayısı 0 veya 0'dan küçükse sepete ekle butonu devre dışı kalacak-->
+                                                    @if (item.Stock <= 0)
+                                                    {
+                                                        <a class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Stokta yok</a>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="item">
+                                @foreach (var item in Model.Take(3))
+                                {
+                                    <div class="col-sm-4">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <a href="/Default/BookDetails/@item.BookId"><img class="indexrndm" src="@item.ImageURL" alt="" /></a>
+                                                    <h2>@item.Price ₺</h2>
+                                                    <p>@item.Name</p>
+
+                                                    <!-- Ürün stok sayısı 0'dan büyükse sepete ekle butonu aktif olacak -->
+                                                    @if (item.Stock > 0)
+                                                    {
+                                                        <a href="/Cart/CartAddd/@item.BookId" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Sepete Ekle</a>
+                                                    }
+
+                                                    <!-- Ürün stok sayısı 0 veya 0'dan küçükse sepete ekle butonu devre dışı kalacak-->
+                                                    @if (item.Stock <= 0)
+                                                    {
+                                                        <a class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Stokta yok</a>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+                </div><!--/recommended_items-->
+            </div>
+        </div>
+    </div>
+</section>

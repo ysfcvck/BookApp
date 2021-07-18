@@ -1,0 +1,9 @@
+﻿@model IEnumerable<BookApp.Models.ViewModels.GenreViewModel>
+<!-- genre list -->
+@foreach (var item in Model)
+{
+    if (item.Status == true)
+    {
+        <li><a href="/Default/BookGenre/@item.GenreId">@item.GenreName</a></li>
+    }
+}

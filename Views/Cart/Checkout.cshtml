@@ -1,0 +1,67 @@
+﻿@model BookApp.Models.ViewModels.OrderViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+
+<section id="cart_items">
+    <div class="container">
+        <div class="shopper-informations">
+            <form action="Checkout" method="post">
+                <div class="row">
+                    <div class="col-sm-6 clearfix">
+                        <div class="bill-to">
+                            <p>Teslimat Bilgileri</p>
+                            <div class="form-one">
+                                <input class="inpt" type="text" name="Name" placeholder="Ad Soyad..">
+                                <input class="inpt" type="email" name="Email" placeholder="Eposta..">
+                            </div>
+                            <div class="form-two">
+                                <input class="inpt" type="text" name="City" placeholder="Şehir..">
+                                <input class="inpt" type="tel" name="Phone" placeholder="Telefon..">
+                            </div>
+                            <div>
+                                <textarea name="Adress" placeholder="Adres.."></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="order-message">
+                            <p>Sipariş Notu</p>
+                            <textarea name="Note" placeholder="Satıcıya iletmek istediğiniz bir not varsa lütfen bu alana yazınız.." rows="16"></textarea>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6 clearfix">
+                        <div class="bill-to">
+                            <p>Ödeme Bilgileri</p>
+                            <div class="form-one">
+                                <input class="inpt" type="text" placeholder="Kart Sahibi">
+                                <input class="inpt" type="text" name="CardNo" placeholder="Kart Numarası">
+                            </div>
+                            <div class="form-two">
+                                <input class="inpt" type="text" placeholder="SKT">
+                                <input class="inpt" type="password" placeholder="CVV">
+                            </div>
+                            <div style="color:red;">
+                                @TempData["CardError"]
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 clearfix">
+                        <p style="color:#fe980f; text-align:center; font-size:30px;">Ödenecek Tutar</p>
+                        <p style="color:#fe980f; text-align:center; font-size:25px;">@ViewBag.totalPrice ₺</p>
+                        <button style="margin-left:210px; background-color:#ff9200; border-color:#ff9200;" class="btn btn-success" type="submit">Ödemeyi Tamamla</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="review-payment">
+            <h2>İnceleme & Ödeme</h2>
+        </div>
+
+        @await Component.InvokeAsync("CartGetList")
+    </div>
+</section>

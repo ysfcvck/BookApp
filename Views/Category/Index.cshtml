@@ -1,0 +1,45 @@
+﻿@model IEnumerable<BookApp.Models.ViewModels.CategoryViewModel>
+
+@{ 
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; 
+}
+
+<div class="module">
+    <div class="module-head">
+        <h3>Kategori İşlemleri</h3>
+        <a style="float:right; margin-top:-25px;" href="/Category/CategoryAdd">Kategori Ekle</a>
+
+    </div>
+    <div class="module-body table">
+        <table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display" width="100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Kategori Adı</th>
+                    <th>Status</th>
+                    <th>Aktif</th>
+                    <th>İnaktif</th>
+                    <th>Düzenle</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                 {
+                    <tr class="odd gradeX">
+                        <td>@Html.DisplayFor(modelItem => item.CategoryId)</td>
+
+                        <td>@Html.DisplayFor(modelItem => item.CategoryName)</td>
+
+                        <td>@Html.DisplayFor(modelItem => item.Status)</td>
+
+                        <td>@Html.ActionLink("Aktif", "CategoryActive", new { id = item.CategoryId }, new { @class = "btn btn-success", onclick = "return confirm('U Y A R I   |   Seçilen kategoriyi aktif etmek üzeresiniz..');" })</td>
+
+                        <td>@Html.ActionLink("İnaktif", "CategoryInactive", new { id = item.CategoryId }, new { @class = "btn btn-warning", onclick = "return confirm('U Y A R I   |   Seçilen kategoriyi inaktif etmek üzeresiniz..');" })</td>
+
+                        <td>@Html.ActionLink("Düzenle", "CategoryGet", new { id = item.CategoryId }, new { @class = "btn btn-primary" })</td>
+                    </tr>
+                 }
+            </tbody>
+        </table>
+    </div>
+</div><!--/.module-->

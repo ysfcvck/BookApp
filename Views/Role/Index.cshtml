@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BookApp.Models.Authentication.AppRole>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="module">
+    <div class="module-head">
+        <h3>Rol Listesi</h3>
+    </div>
+    <div class="module-body">        
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Olusturulma Tarihi
+                    </th>
+                    <th>
+                        Rol Adı
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OlusturulmaTarihi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

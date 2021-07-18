@@ -1,0 +1,47 @@
+﻿@model BookApp.Models.ViewModels.CategoryViewModel
+@{
+    Layout = Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Kategori Düzenle</title>
+</head>
+<body>
+    <div class="container">
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" style="text-align:center;">DÜZENLE</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        @using (Html.BeginForm("CategoryUpdate", "Category", FormMethod.Post))
+                        {
+                            @Html.HiddenFor(x => x.CategoryId, new { @readonly = true, @class = "form-control" })
+
+                            <b>Kategori Adı:</b><br />
+                            @Html.ValidationMessageFor(model => model.CategoryName, "", new { @style = "color:red" })
+                            @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control", @style = "width:500px" })
+
+                            @Html.HiddenFor(x => x.Status, new { @class = "form-control" })
+
+                            <div class="modal-footer">
+                                <button class="btn btn-primary">Güncelle</button>
+                                <a onclick="history.back();" class="btn btn-danger">İptal</a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $(function () {
+        $('#myModal').modal({ backdrop: 'static', keyboard: false, show: true });
+    });
+</script>
+

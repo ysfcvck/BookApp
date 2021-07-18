@@ -1,0 +1,47 @@
+﻿@model IEnumerable<BookApp.Models.ViewModels.OrderViewModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- GİRİŞ YAPAN KULLANICIYA AİT BEKLEYEN SİPARİŞLER -->
+
+<section id="cart_items">
+    <div class="container">
+        <h2 style="text-align:center; color:#fe980f; margin-bottom:30px;">Bekleyen Siparişlerim</h2>
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed">
+                <thead>
+                    <tr class="cart_menu" style="text-align:center;">
+                        <td style="text-align:left;" class="image">Sipariş No</td>
+                        <td style="text-align:left;" class="description">Ürün</td>
+                        <td class="quantity">Adet</td>
+                        <td class="total">Tutar</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr style="text-align:center;">
+                            <td class="cart_price" style="text-align:left; padding-left:30px;">
+                                <h4>@item.OrderNo</h4>
+                            </td>
+                            <td class="cart_description" style="text-align:left;">
+                                <h4><a href="/Default/BookDetails/@item.BookId">@item.Book.Name</a></h4>
+                                <p>Ürün ID : @item.BookId</p>
+                            </td>
+                            <td class="cart_price">
+                                <p>
+                                    <a style="color:#696763;">@item.Quantity</a><br />
+                                </p>
+                            </td>
+                            <td class="cart_total">
+                                <p class="cart_total_price">@item.Price ₺</p>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

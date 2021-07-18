@@ -1,0 +1,172 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Ana Sayfa | BookApp</title>
+    <link href="~/BookShop/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/BookShop/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/BookShop/css/prettyPhoto.css" rel="stylesheet">
+    <link href="~/BookShop/css/price-range.css" rel="stylesheet">
+    <link href="~/BookShop/css/animate.css" rel="stylesheet">
+    <link href="~/BookShop/css/main.css" rel="stylesheet">
+    <link href="~/BookShop/css/responsive.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/BookShop/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/BookShop/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/BookShop/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="~/BookShop/images/ico/apple-touch-icon-57-precomposed.png">
+</head><!--/head-->
+
+<body>
+    <header id="header">
+        <!--header-->
+        <div class="header-middle">
+            <!--header-middle-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="logo pull-left">
+                            <a href="/Default/Index"><img style="width:130px;" src="~/BookShop/images/home/logo1.png" alt="" /></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="shop-menu pull-right">
+                            <ul class="nav navbar-nav">
+                                <!--Kullanıcı giriş yaptıysa-->
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li><a href="/Account/Index"><i class="fa fa-user"></i> Hesabım</a></li>
+                                    if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                                    {
+                                        <li><a href="/Order/UnShippedOrders"><i class="fa fa-crosshairs"></i> Yönetici Paneli</a></li>
+                                    }
+                                    <li><a href="/Cart/Index"><i class="fa fa-shopping-cart"></i> Sepetim(@ViewBag.CartCount)</a></li>
+                                    <li><a href="/User/Logout"><i class="fa fa-lock"></i> Çıkış</a></li>
+                                }
+                                <!--Kullanıcı giriş yapmadıysa-->
+                                @if (!User.Identity.IsAuthenticated)
+                                {
+                                    <li><a href="/User/Login"><i class="fa fa-lock"></i> Giriş</a></li>
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/header-middle-->
+
+        <div class="header-bottom">
+            <!--header-bottom-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="mainmenu pull-left">
+                            <ul class="nav navbar-nav collapse navbar-collapse">
+                                <li><a href="/Default/Index">Ana Sayfa</a></li>
+                                <li><a href="/Default/Books">Ürünler</a></li>
+                                <li><a href="/Contact/Index">İletişim</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="search_box pull-right">
+                            @using (Html.BeginForm("Books", "Default"))
+                            {
+                                <div>
+                                    @Html.TextBox("searchBook", null, new { @class = "form-control-search", @placeholder = "Kitap adı ile ara.." })
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-sm-3" style="margin-top:-35px; margin-left:700px;">
+                        <div class="search_box pull-right">
+                            @using (Html.BeginForm("Books", "Default"))
+                            {
+                                <div>
+                                    @Html.TextBox("searchWriter", null, new { @class = "form-control-search", @placeholder = "Yazar adı ile ara.." })
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/header-bottom-->
+    </header><!--/header-->
+
+    @RenderBody()
+
+    <footer id="footer">
+        <div class="footer-widget">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="single-widget">
+                            <h2>MAĞAZA</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="/Default/Books">Tüm Kitaplar</a></li>
+                                <li><a href="/Cart/Index">Sepetim</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="single-widget">
+                            <h2>POLİTİKALAR</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a>Kullanıcı Sözleşmesi</a></li>
+                                <li><a>Gizlilik Politikası</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="single-widget">
+                            <h2>DİĞER</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="/Account/Index">Hesabım</a></li>
+                                <li><a href="/User/Logout">Çıkış</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="address">
+                            <a href="/Contact/Index"><img src="~/BookShop/images/home/map.png" alt="" /></a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <p class="pull-left">BookApp © 2021 | Tüm hakları saklıdır.</p>
+                </div>
+            </div>
+        </div>
+    </footer><!--/Footer-->
+    <script src="~/BookShop/js/jquery.js"></script>
+    <script src="~/BookShop/js/bootstrap.min.js"></script>
+    <script src="~/BookShop/js/jquery.scrollUp.min.js"></script>
+    <script src="~/BookShop/js/price-range.js"></script>
+    <script src="~/BookShop/js/jquery.prettyPhoto.js"></script>
+    <script src="~/BookShop/js/main.js"></script>
+</body>
+</html>

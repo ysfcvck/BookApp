@@ -1,0 +1,38 @@
+﻿@model BookApp.Models.ViewModels.GenreViewModel
+
+@{ 
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; 
+}
+
+
+<div class="module">
+    <div class="module-head">
+        <h3>Tür Ekle</h3>
+        <a style="float:right; margin-top:-25px;" href="/Genre/Index">Tür Listesi</a>
+    </div>
+    <div class="module-body">
+        @using (Html.BeginForm(new { @class= "form-horizontal row-fluid" }))
+        {
+        
+            <div class="control-group">
+                <label class="control-label" for="basicinput">Tür Adı</label>
+                <div class="controls">
+                    @Html.TextBoxFor(x => x.GenreName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.GenreName, "", new { @style = "color:red" })
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="basicinput">Status</label>
+                <div class="controls">
+                    @Html.DropDownListFor(x => x.Status, (List<SelectListItem>)ViewBag.Statuses, "--Lütfen Durum Seçin--", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
