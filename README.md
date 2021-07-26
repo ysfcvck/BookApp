@@ -1,5 +1,5 @@
-User interface
-- Registration is required to shop.
+  User interface
+- Registration is required to purchase
 - User can add products to cart when logged in.
 - Out of stock products cannot be added to the cart.
 - Search can be made by book title or author name.
@@ -11,13 +11,14 @@ User interface
 - Completed or pending orders are displayed on the My Account page and user information can be changed.
 -If the logged in user has the role of admin or moderator, a button appears in the top bar to switch to the admin panel.
 
-Admin Panel
+  Admin Panel
 - User, book, category, genre, order and advertisement in this panel
-management can be done.
+  management can be done.
 - The user with the admin role cannot be deleted from the system.
 - When the user places an order, they appear on the admin panel as pending orders. When the admin or moderator approves the order, the order is marked as sent.
 - Ads on the homepage in the user interface can be changed from this panel.
 - Visibility of categories or genres in the UI can be changed.
+
 
 
 User Interface
