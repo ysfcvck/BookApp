@@ -1,22 +1,22 @@
   **User interface**
-- Registration is required to purchase
-- User can add products to cart when logged in.
+- Registration is required to purchase.
+- Users can add products to cart when logged in.
 - Out of stock products cannot be added to the cart.
 - Search can be made by book title or author name.
 - Filtering can be done from categories.
-- When you go to the cart, the total price of the products in the cart is displayed.
-- If you want, you can remove the product in the cart.
+- When you proceed to the cart, the total price of the products in the cart is displayed.
+- If you want, you can remove the products in the cart.
 - Card number verification is done with the Luhn algorithm in the payment section.
-- If the card number is correct, the order is created.
-- Completed or pending orders are displayed on the My Account page and user information can be changed.
--If the logged in user has the role of admin or moderator, a button appears in the top bar to switch to the admin panel.
+- If the card number is correct, the order gets received.
+- Completed or pending orders are displayed on the My Account page and user informations can be changed.
+- If the logged in user has the role of Admin/Moderator, a button appears in the top bar to switch to the admin panel.
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   **Admin Panel**
 - In this panel; user, book, category, genre, order and advertisement management can be done.
 - The user with the admin role cannot be deleted from the system.
-- When the user places an order, they appear on the admin panel as pending orders. When the admin or moderator approves the order, the order is marked as sent.
+- When users place an order, they appear on the admin panel as pending orders. When the Admin/Moderator approves the order, the order gets marked as sent.
 - Ads on the homepage in the user interface can be changed from this panel.
 - Visibility of categories or genres in the UI can be changed.
 
