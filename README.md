@@ -1,4 +1,4 @@
-  **User interface**
+  **User Interface**
 - Registration is required to purchase.
 - Users can add products to cart when logged in.
 - Out of stock products cannot be added to the cart.
