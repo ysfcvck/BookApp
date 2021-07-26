@@ -1,4 +1,26 @@
-Kullanıcı Arayüzü
+User interface
+- Registration is required to shop.
+- User can add products to cart when logged in.
+- Out of stock products cannot be added to the cart.
+- Search can be made by book title or author name.
+- Filtering can be done from categories.
+- When you go to the cart, the total price of the products in the cart is displayed.
+- If you want, you can remove the product in the cart.
+- Card number verification is done with the Luhn algorithm in the payment section.
+- If the card number is correct, the order is created.
+- Completed or pending orders are displayed on the My Account page and user information can be changed.
+-If the logged in user has the role of admin or moderator, a button appears in the top bar to switch to the admin panel.
+
+Admin Panel
+- User, book, category, genre, order and advertisement in this panel
+management can be done.
+- The user with the admin role cannot be deleted from the system.
+- When the user places an order, they appear on the admin panel as pending orders. When the admin or moderator approves the order, the order is marked as sent.
+- Ads on the homepage in the user interface can be changed from this panel.
+- Visibility of categories or genres in the UI can be changed.
+
+
+User Interface
 
 ![Login](https://user-images.githubusercontent.com/81382160/126084033-9430df95-77d8-40c6-9cd8-d859b740334e.png)
 ![KayitFormu](https://user-images.githubusercontent.com/81382160/126084045-37fd8c06-c960-4e7b-8600-5aea8eb9f78c.png)
@@ -9,7 +31,8 @@ Kullanıcı Arayüzü
 ![Sepet](https://user-images.githubusercontent.com/81382160/126084090-a444642a-85d5-447d-ad98-96092db9f6be.png)
 ![Checkout1](https://user-images.githubusercontent.com/81382160/126084101-f49d96db-bccb-4ab6-a481-1613f6568b49.png)
 
-Yönetici Paneli
+
+Admin Panel
 
 ![KitapIslemleri](https://user-images.githubusercontent.com/81382160/126084116-7596d079-3ad1-4554-8905-16a19cd4342d.png)
 ![KitapKayit](https://user-images.githubusercontent.com/81382160/126084124-3e0c6bba-4062-490c-9db0-92c0b5e99e69.png)
