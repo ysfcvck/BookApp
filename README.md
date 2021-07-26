@@ -11,6 +11,8 @@
 - Completed or pending orders are displayed on the My Account page and user information can be changed.
 -If the logged in user has the role of admin or moderator, a button appears in the top bar to switch to the admin panel.
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
   Admin Panel
 - User, book, category, genre, order and advertisement in this panel
   management can be done.
@@ -19,7 +21,7 @@
 - Ads on the homepage in the user interface can be changed from this panel.
 - Visibility of categories or genres in the UI can be changed.
 
-
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 User Interface
 
@@ -32,6 +34,7 @@ User Interface
 ![Sepet](https://user-images.githubusercontent.com/81382160/126084090-a444642a-85d5-447d-ad98-96092db9f6be.png)
 ![Checkout1](https://user-images.githubusercontent.com/81382160/126084101-f49d96db-bccb-4ab6-a481-1613f6568b49.png)
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Admin Panel
 
